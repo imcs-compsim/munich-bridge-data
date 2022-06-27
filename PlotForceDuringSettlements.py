@@ -25,7 +25,7 @@ suffix = 'ForceAt' + '100' + 'Hz'
 
 for title in titles:
 
-    df = pd.read_csv(title + suffix + '.csv')  
+    df = pd.read_csv(title + suffix + '.csv.zip')
 
     df['Time (-)'] = pd.to_datetime(df['Time (-)'])
 
