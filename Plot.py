@@ -31,14 +31,18 @@ def Points(df, x, y, saveAs=''):
     plt.show()  
     
     
-def Lines(df, x, y, saveAs=''):
+def Lines(df, x, y, title, xlabel, ylabel ='', saveAs=''):
 
     fig, ax = plt.subplots()
 
-    ax = df.plot(x=x, y=y, subplots=True)
+    ax = df.plot(x=x, y=y, subplots=False, title=title)
     
-    ax.set_xlabel('Date and Time')
+    if xlabel != '':
+        ax.set_xlabel(xlabel)
     
+    if ylabel != '':
+        ax.set_ylabel(ylabel)
+
     if len(y) == 1:
         ax.set_ylabel(y[0])
         ax.get_legend().remove()

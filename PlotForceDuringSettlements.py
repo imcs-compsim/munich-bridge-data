@@ -12,7 +12,9 @@ import pandas as pd
 
 import Plot as plot
 
-titles = ['./Settlements/UniBw_2022-04-11_ref_support_load_01',
+date = '2022-04-11'
+
+titles = ['./Settlements/UniBw_' + date + '_ref_support_load_01',
           # add,
           # more,
           # files,
@@ -25,6 +27,8 @@ for title in titles:
 
     df = pd.read_csv(title + suffix + '.csv')  
 
+    df['Time (-)'] = pd.to_datetime(df['Time (-)'])
+
     plot.Lines(df, x='Time (-)', y = ['FRC-01 [kN]', 'FRC-02 [kN]'], 
-               title = 'Force: '+title, ylabel='Force [kN]',
+               title = 'Force: '+title, xlabel='Time on '+date, ylabel='Force [kN]',
                saveAs=title + suffix + '.pdf')
