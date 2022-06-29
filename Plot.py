@@ -47,7 +47,8 @@ def Lines(df, x, y, title, xlabel, ylabel ='', saveAs=''):
         ax.set_ylabel(y[0])
         ax.get_legend().remove()
     
-    plt.setp( ax.xaxis.get_majorticklabels(), rotation=35, ha="right", rotation_mode="anchor") 
+    plt.setp( ax.xaxis.get_majorticklabels(), rotation=35, ha="right", rotation_mode="anchor")
+    plt.setp( ax.xaxis.get_ticklabels(minor=True), rotation=35, ha="right", rotation_mode="anchor")
 
     fig = ax.get_figure()
 
