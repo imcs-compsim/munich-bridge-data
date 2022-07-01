@@ -81,6 +81,28 @@ def LinesInSubPlots(df, x, y, title, saveAs=''):
 
     plt.show()     
     
+def LinesInSubPlotsOn(date, df, x, y, title, saveAs=''):
+
+    fig, ax = plt.subplots()
+
+    axArr = df.plot(x=x, y=y, subplots=True, title = title)
+    
+    for i, ax in enumerate(axArr):
+        ax.set_xlabel('Time on ' + date)
+        ax.set_ylabel(y[i], rotation = 'horizontal')
+        ax.yaxis.set_label_coords(-0.25,0.5)
+        ax.get_legend().remove()
+        plt.setp( ax.xaxis.get_majorticklabels(), rotation=35, ha="right", rotation_mode="anchor") 
+
+    fig = axArr[0].get_figure()
+
+    if saveAs == '':
+        fig.show()
+    else:
+        fig.savefig(saveAs,bbox_inches="tight")
+
+    plt.show()     
+    
 def LinesInSubPlotsAndVLines(df, x, y, newStarts, title, saveAs=''):
 
     fig, ax = plt.subplots()
