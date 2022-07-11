@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Create strain plots for munich-bridge-data publication
+Strain and force measurement in one plot.
 
 Created on Wed Jun 15 07:47:59 2022
 
@@ -22,7 +22,7 @@ formatter = mdates.DateFormatter('%H:%M')
 suffix1 = 'DMS_CNAt' + '100' + 'Hz'
 suffix2 = 'ForceAt' + '100' + 'Hz'
 
-titles = ['./Settlements/UniBw_'+date+'_ref_support_load_01',
+titles = ['../Settlements/UniBw_'+date+'_ref_support_load_01',
            # 'Settlements/Lowering/UniBw_2022-04-11_support_01_lowering_01',
            # 'Settlements/Lowering/UniBw_2022-04-11_support_01_lowering_02',   
            # './Settlements/UniBw_'+date+'_support_load_01',
@@ -40,7 +40,7 @@ for i, title in enumerate(titles):
     
     df = pd.read_csv(title + suffix2 + '.csv.zip')
     df['Time (-)'] = pd.to_datetime(df['Time (-)'])
-    df.plot(ax = ax, x='Time (-)', y='FRC-01 [kN]', x_compat=True, color='black')
+    df.plot(ax = ax, x='Time (-)', y='FRC-01 [kN]', x_compat=True, color='black', alpha=0.5)
     ax.set_ylabel('FRC-01 [kN]')
 
     ax.xaxis.set_major_formatter(formatter)
