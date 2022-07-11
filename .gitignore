@@ -6,6 +6,10 @@ __pycache__/
 # Plots can allways be reproduced from source and data 
 *.pdf
 
+
+# Why does Mac do that?
+*.DS_Store
+
 # C extensions
 *.so
 
