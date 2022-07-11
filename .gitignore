@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Plots can allways be reproduced from source and data 
+*.pdf
+
 # C extensions
 *.so
 
