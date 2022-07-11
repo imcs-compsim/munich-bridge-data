@@ -16,7 +16,7 @@ import Plot as plot
 windows = 'cp1252'
 
 # DMS measurements are in the following columns
-cols=[0, 11, 12, 13, 14, 15, 16]
+cols=[0, 18, 19, 20, 21, 22, 48, 49, 50, 51, 52]
 
 folder = '/Users/maxvondanwitz/Desktop/'
 
@@ -32,8 +32,12 @@ titles = ['Settlements/UniBw_2022-04-11_ref_support_load_01',
 
 for title in titles:
 
-    df = pd.read_csv(folder + title + '.csv', usecols = cols, encoding=windows)  
+    df = pd.read_csv(folder + title + '.csv', usecols = cols, encoding=windows)
 
     mdf = df.iloc[0:-1:10]
 
-    plot.LinesInSubPlots(mdf, x='Time (-)', y = ['DMS_AS (um/m)', 'DMS_AN (um/m)', 'DMS_BS (um/m)', 'DMS_BN (um/m)','DMS_CS (um/m)', 'DMS_CN (um/m)',], title = 'Strains: '+title, saveAs=title+'Strains.pdf')
+    plot.LinesInSubPlots(mdf, x='Time (-)', y = ['INC01 (deg)', 'INC02 (deg)',
+                                                 'INC03 (deg)', 'INC04 (deg)',
+                                                 'INC05 (deg)', 'INC06 (deg)',
+                                                 'INC07 (deg)', 'INC08 (deg)',
+                                                 'INC09 (deg)', 'INC10 (deg)'], title = 'INC: '+title, saveAs=title+'INC.pdf')

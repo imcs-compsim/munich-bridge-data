@@ -39,9 +39,9 @@ newStarts = []
 for i, title in enumerate(titles):
 
     print('Working on title number: ' + str(i) + '.')
-    df = pd.read_csv(folder + title + '.csv', usecols = cols, encoding=windows)  
+    df = pd.read_csv(folder + title + '.csv', usecols = cols, encoding=windows)
     df.iloc[:,0] = pd.to_datetime(df.iloc[:,0])
-    
+
     if i == 0:
         mdf = df.iloc[0:-1:stride]
     else:
