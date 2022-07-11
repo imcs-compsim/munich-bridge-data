@@ -14,7 +14,7 @@ import Plot as plot
 
 date = '2022-04-11'
 
-titles = ['./Settlements/UniBw_' + date + '_ref_support_load_01',
+titles = ['../Settlements/UniBw_' + date + '_ref_support_load_01',
           # add,
           # more,
           # files,
