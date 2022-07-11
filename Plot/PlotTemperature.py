@@ -12,7 +12,7 @@ import pandas as pd
 
 import Plot as plot
 
-titles = ['./Weather/TemperatureComparisonMUC',
+titles = ['../Weather/TemperatureComparisonMUC',
           # add,
           # more,
           # files,
