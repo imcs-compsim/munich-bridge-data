@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Main driver to create plots for munich-bridge-data publication
+Create plot with comparison of data of the four sensor types
 
 Created on Wed Jun 15 07:47:59 2022
 
@@ -14,7 +14,7 @@ import Plot as plot
 
 date = '2022-04-11'
 
-titles = ['./Settlements/UniBw_2022-04-11_ref_support_load_01',
+titles = ['../Settlements/UniBw_2022-04-11_ref_support_load_01',
           # 'Settlements/UniBw_2022-04-11_support_load_01',
           # 'Settlements/UniBw_2022-04-11_support_load_02',
           # 'Settlements/UniBw_2022-04-11_support_load_03',
@@ -34,5 +34,5 @@ for title in titles:
 
     plot.LinesInSubPlotsOn(date, df, x='Time (-)',
                          y = ['ACC01_z [g]', 'DMS_AS [um/m]',
-                              'FRC-01 [kN]', 'INC01 [deg]'], title = 'AllM: '+title, saveAs=title+'AllM.pdf')
+                              'FRC-01 [kN]', 'INC01 [deg]'], title = 'Four sensors: '+title, saveAs=title+'FourSensors.pdf')
     
