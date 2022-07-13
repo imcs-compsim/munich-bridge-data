@@ -45,13 +45,18 @@ title = 'Smoothing and picking every 100th data point'
 fig, ax = plt.subplots()
 sdf.plot(ax = ax, title=title)
 
-# 2) Resample
-rdf = df.resample('1S').mean()
-rdf.plot()
-
-
-# 3) Use scipy signal decimate to do the job.
+# 2) Use scipy signal decimate to do the job.
 sdf['scipy.signal.decimate(factor=100)'] = sig.decimate(df.iloc[:,0].squeeze(), 100, ftype='fir')
 sdf.plot()
 
+# 3) Resample
+rdf = df.resample('1S').mean()
+rdf.plot()
+
 # TODO: We need some measure to determine which compression techniquie works well.
+
+# It might be more promissing to split the data into intervals and find representations for each interval.
+# Automatic interval splits could be based on peaks in standard deviation.
+title = 'Standard deviation peaks as interval boundary indicators?'
+rdf['rolling std'] = rdf.iloc[:,0].squeeze().rolling(20).std()
+rdf.plot(y =['DMS_CN (um/m)', 'rolling std'])
