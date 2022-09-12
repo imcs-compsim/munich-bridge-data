@@ -15,6 +15,9 @@ import Plot as plot
 date = '2022-04-11'
 
 titles = ['../Settlements/UniBw_' + date + '_ref_support_load_01',
+          '../Settlements/UniBw_' + date + '_support_load_01',
+          '../Settlements/UniBw_' + date + '_support_load_02',
+          '../Settlements/UniBw_' + date + '_support_load_03',
           # add,
           # more,
           # files,
@@ -29,6 +32,6 @@ for title in titles:
 
     df['Time (-)'] = pd.to_datetime(df['Time (-)'])
 
-    plot.Lines(df, x='Time (-)', y = ['FRC-01 [kN]', 'FRC-02 [kN]'], 
+    plot.LinesBW(df, x='Time (-)', y = ['FRC-01 [kN]', 'FRC-02 [kN]'],
                title = 'Force: '+title, xlabel='Time on '+date, ylabel='Force [kN]',
                saveAs=title + suffix + '.pdf')
