@@ -24,8 +24,9 @@ suffix1 = 'ForceAt' + '100' + 'Hz'
 
 titles = ['../ReferenceState/ReferenceState',
           ]
+linestyles = ["-", "--"]
 
-colors = ['black', 'grey']
+colors = ['black', 'black']
 
 fig, ax = plt.subplots()
 
@@ -35,7 +36,7 @@ for i, title in enumerate(titles):
 
     df = pd.read_csv(title + suffix1 + '.csv.zip')
     df['Time (-)'] = pd.to_datetime(df['Time (-)'])
-    df.plot(ax = ax, x='Time (-)', y=['FRC-01 (kN)','FRC-02 (kN)'], color = colors, x_compat=True)
+    df.plot(ax = ax, x='Time (-)', y=['FRC-01 (kN)','FRC-02 (kN)'], color = colors, style = linestyles, x_compat=True)
     ax.set_ylabel('FRC-01/2 [kN]')
 
     ax.xaxis.set_major_locator(MaxNLocator(7))
@@ -45,6 +46,6 @@ for i, title in enumerate(titles):
     plt.setp( ax.xaxis.get_ticklabels(minor=True), rotation=35, ha="right", rotation_mode="anchor")
     ax.set_xlabel('Time on ' + date)
 
-    ax.legend(['FRC-01 [kN]', 'FRC-02 [kN]'])
+    ax.legend(['FRC-01 [kN]', 'FRC-02 [kN]'], ncol = 2, loc='upper center', bbox_to_anchor=(0.5, 1.27))
 
 fig.savefig(title + 'Force' + '.pdf', bbox_inches="tight")
