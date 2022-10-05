@@ -10,4 +10,4 @@ This repo collects MATLAB and Python routines to interact with the "raw" sensor 
 
 Whenever you use or mention munich-bridge-data in some sort of scientific document/publication/presentation, please cite the following publication.
 
-Y. Jaelani, A. Klemm, J. Wimmer, F. Seitz, M. Köhncke, F. Marsili, A. Mendler, M. von Danwitz, S. Keßler, S. Henke, M. Gündel, T. Braml, A. Popp: **Developing a Benchmark Study for Bridge Monitoring: Experimental study of damage diagnosis on a test bridge**, *submitted for publication*
+Y. Jaelani, A. Klemm, J. Wimmer, F. Seitz, M. Köhncke, F. Marsili, A. Mendler, M. von Danwitz, S. Keßler, S. Henke, M. Gündel, T. Braml, A. Popp: **Developing a Benchmark Study for Bridge Monitoring**, *submitted for publication*
