@@ -134,3 +134,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Big data files
+.csv
+.gzip
+.parquet
