@@ -136,6 +136,6 @@ dmypy.json
 .pyre/
 
 # Big data files
-.csv
-.gzip
-.parquet
+*.csv
+*.gzip
+*.parquet
