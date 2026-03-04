@@ -5,7 +5,7 @@ from scipy.signal import detrend
 import numpy as np
 import seaborn as sns
 
-fn_input = r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\20220404\Downsample\UniBw_2022-04-04_ref_ambient_STRAIN_1Hz.parquet.gzip"
+fn_input = r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\20220404\Downsample\UniBw_2022-04-04_ref_ambient_INCLINATION_1Hz.parquet.gzip"
 
 df = pd.read_parquet(
     fn_input)
@@ -30,31 +30,20 @@ for i in labels[2:-1]:
 headers = df.columns.to_list()
 
 # Sensors' location:
-x_sensor = np.array([5.97, 14.95, 24.30])
+x_sensor = np.array([])
 
 colors = ['r', 'g', 'b']
-fig, ax = plt.subplots(3, 2, figsize=(16, 8), dpi=300)
-ind = [2, 5, 3, 6, 4, 7]
-for i in range(3):
+fig, ax = plt.subplots(5, 2, figsize=(16, 12), dpi=300)
+for i in range(5):
     for j in range(2):
         k = 2*i+j
+        print(i, j, k)
         ax[i, j].plot(
-            df.index,
-            df[headers[ind[k]]], '-', label=headers[ind[k]], linewidth=1.0)
+            df['Time (s)'],
+            df[headers[k]], '-', label=headers[k], linewidth=0.5)
         ax[i, j].legend()
         ax[i, j].set_xlabel('t (s)')
-        ax[i, j].set_ylabel('epel (um/m)')
+        ax[i, j].set_ylabel('inc (deg)')
         ax[i, j].grid(visible=True)
 fig.tight_layout()
-fig.savefig('ambient_strain.png')
-
-"""
-counts, bins = np.histogram(df[labels[2]+'_detrend'], bins=250)
-fig, ax = plt.subplots(1, 1, figsize=(12, 6), dpi=300)
-sns.histplot(data=df[labels[2]+'_detrend'], ax=ax)
-# ax.hist(bins[:-1], bins, weights=counts)
-ax.legend()
-ax.grid(visible=True)
-fig.tight_layout()
-fig.savefig('ambient_strains_hist.png')
-"""
+fig.savefig('ambient_inclination.png')

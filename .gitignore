@@ -139,3 +139,6 @@ dmypy.json
 *.csv
 *.gzip
 *.parquet
+
+# Pictures
+*.png

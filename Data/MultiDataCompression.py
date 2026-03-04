@@ -5,10 +5,10 @@ import pyarrow.parquet as pq
 import pandas as pd
 
 in_dir = Path(
-    r"P:\Projects\PhySimTwin\01 Munich bridge data\Export\Neuer Ordner")
+    r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\20220404")
 
 out_dir = Path(
-    r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\Downsample")
+    r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\20220404")
 
 # in_dir = Path(
 #    r"C:\Users\bona_ja\munich-bridge-data\Data\Export\Ambient\Test")
@@ -16,15 +16,17 @@ out_dir = Path(
 
 fns_input = sorted(in_dir.glob("*.csv"))
 fn_output = os.path.join(
-    out_dir, r"UniBw_2022-03-11_ref_ambient_FORCE.parquet.gzip")
+    out_dir, r"UniBw_2022-04-04_ref_ambient_TEMPERATURE.parquet.gzip")
 
-cols = ['Time (-)', 'ACC01_z (g)', 'ACC02_z']
 cols_strain = ['Time (-)', 'KOMP_BS (um/m)', 'KOMP_BN (um/m)', 'DMS_AS (um/m)', 'DMS_BS (um/m)',
                'DMS_CS (um/m)', 'DMS_AN (um/m)', 'DMS_BN (um/m)', 'DMS_CN (um/m)']
 cols_force = ['Time (-)', 'FRC-01 (N)', 'FRC-02 (N)']
+cols_inc = ['Time (-)', 'INC01 (deg)', 'INC02 (deg)', 'INC03 (deg)', 'INC04 (deg)',
+            'INC05 (deg)', 'INC06 (deg)', 'INC07 (deg)', 'INC08 (deg)', 'INC09 (deg)', 'INC10 (deg)']
+cols_temp = ['Time (-)', 'Air Temperature -  (°C)']
 
 df_list = []
-for i, file in enumerate(fns_input[:5]):
+for i, file in enumerate(fns_input):
 
     print(i)
 
@@ -35,22 +37,25 @@ for i, file in enumerate(fns_input[:5]):
 
     chunk_list = []
     for chunk in pd.read_csv(
-            file, usecols=cols_force, encoding='latin-1', chunksize=100_000):
+            file, usecols=cols_temp, encoding='latin-1', chunksize=100_000):
         chunk_list.append(chunk)
 
     # Concatenate each chunk, within same file
     df_tmp = pd.concat(chunk_list)
 
     # Drop the first values of each sub file (huge oscillations in the sensors' readings),
-    # n = 100 (0.1s) for strains
+    # n = 1000 (1.0s) for strains
     # n = 1000 (1.0s) for forces
-    n = 1000
-    df_tmp = df_tmp.drop(list(range(n)))
+    # n = 1000 (1.0s) also for inclination and temperature
+    # n = 1000
+    # df_tmp = df_tmp.drop(list(range(n)))
 
     # Add to list, each element of the list is a file 000i:
     df_list.append(df_tmp)
 
 df = pd.concat(df_list).reset_index(drop=True)
+
+print(df.columns.to_list())
 
 # Convert to datetime and calculate seconds since first instant:
 df['Time (-)'] = pd.to_datetime(df['Time (-)'],
